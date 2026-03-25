@@ -143,10 +143,12 @@
     </div>
     <div class="legend-item">
       <span class="legend-dot" style="background:#E53935"></span> Points clés
-    </div>
+    }
   </div>
 
-  <div class="footer">2024 Veolia - Chaingy</div>
+  <div class="footer">
+    2024 Veolia - Chaingy
+  </div>
 
   <script>
     var map = L.map('map', {
@@ -167,8 +169,8 @@
     satelliteLayer.addTo(map);
     var isSatellite = true;
 
-    // Chargement KML
-    var kmlUrl = 'https://drive.google.com/uc?export=download&id=15hGOXtvZWbZ2TPPMbs3IkNr_PIHurzOX';
+    // Chargement KML depuis GitHub Pages
+    var kmlUrl = 'votre_fichier.kml'; // REMPLACER PAR LE NOM DE VOTRE FICHIER KML
 
     var kmlLayer = omnivore.kml(kmlUrl)
       .on('ready', function() {
