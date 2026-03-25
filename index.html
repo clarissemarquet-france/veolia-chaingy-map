@@ -117,14 +117,14 @@
   </div>
 
   <div class="toolbar">
-    <button class="btn-geolocate" id="btn-geo" onclick="geolocateUser()">
+    <button class="btn-geolocate" id="btn-geo" onclick="openGeolocatedMap()">
       📍 Me géolocaliser
     </button>
     <button class="btn-satellite" onclick="toggleSatellite()">
       🛰️ Vue satellite
     </button>
     <span style="font-size:0.8em; color:#666;">
-      Cliquez sur Me géolocaliser pour afficher votre position
+      Cliquez sur "Me géolocaliser" pour afficher votre position
     </span>
   </div>
 
@@ -230,7 +230,7 @@
       var statusEl = document.getElementById('status');
 
       if (!navigator.geolocation) {
-        statusEl.innerHTML = '❌ Géolocalisation non supportée.';
+        statusEl.innerHTML = '❌ Géolocalisation non supportée par votre navigateur.';
         return;
       }
 
@@ -277,6 +277,20 @@
         { enableHighAccuracy: true, timeout: 15000, maximumAge: 0 }
       );
     }
+
+    // Fonction pour ouvrir la carte dans un nouvel onglet et déclencher la géolocalisation
+    function openGeolocatedMap() {
+      var githubPagesUrl = window.location.href.split('?')[0]; // URL de base de la page GitHub
+      window.open(githubPagesUrl + '?geolocate=true', '_blank');
+    }
+
+    // Vérifier si la page a été ouverte avec le paramètre geolocate=true
+    window.onload = function() {
+      var urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get('geolocate') === 'true') {
+        geolocateUser();
+      }
+    };
 
     function toggleSatellite() {
       if (isSatellite) {
